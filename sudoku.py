@@ -70,6 +70,18 @@ class sudoku:
                     s.add(1 <= grid[i][j])
                     s.add(grid[i][j] <= 9)
 
+        for p in range(self.base):
+            for q in range(self.base):
+                g = [[grid[i][j] for j in range(q*self.base, (q+1)*self.base)]
+                                 for i in range(p*self.base, (p+1)*self.base)]
+
+                for i in range(self.base):
+                    for j in range(self.base):
+                        if type(g[i][j]) == z3.z3.ArithRef:
+                            for k in range(self.base):
+                                for l in range(self.base):
+                                    if k != i and l != j:
+                                        s.add(g[i][j] != g[k][l])
         if s.check() == sat:
             for i in range(len(Gf)):
                 for j in range(len(Gf)):
@@ -88,7 +100,7 @@ class sudoku:
         line3  = S.frame("╠═══╪═══╬═══╣")
         line4  = S.frame("╚═══╧═══╩═══╝")
         symbol = " 1234567890"
-        nums   = nums   = [ [""]+[symbol[n] for n in row] for row in Gf ]
+        nums   = [ [""]+[symbol[n] for n in row] for row in Gf ]
 
         print(line0)
         for r in range(1, self.side+1):
