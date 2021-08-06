@@ -29,7 +29,7 @@ class sudoku:
     def elimVar(self):
         Gi = self.grid()
         G = self.G
-        nbIter = random.randint(15, 25)
+        nbIter = random.randint(20, 50)
         index1 = []
         index2 = []
 
