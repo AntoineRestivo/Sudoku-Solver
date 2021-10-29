@@ -32,7 +32,6 @@ class sudoku:
         nbIter = random.randint(20, 50)
         index1 = []
         index2 = []
-
         for i in range(nbIter):
             index1.append(random.randint(0, 8))
             index2.append(random.randint(0, 8))
@@ -74,7 +73,6 @@ class sudoku:
             for q in range(self.base):
                 g = [[grid[i][j] for j in range(q*self.base, (q+1)*self.base)]
                                  for i in range(p*self.base, (p+1)*self.base)]
-
                 for i in range(self.base):
                     for j in range(self.base):
                         if type(g[i][j]) == z3.z3.ArithRef:
@@ -95,12 +93,12 @@ class sudoku:
 
     def prettyPrint(self, Gf):
         line0 = S.frame("╔═══╤═══╦═══╗")
-        line1  = S.frame("║ . │ . ║ . ║")
-        line2  = S.frame("╟───┼───╫───╢")
-        line3  = S.frame("╠═══╪═══╬═══╣")
-        line4  = S.frame("╚═══╧═══╩═══╝")
+        line1 = S.frame("║ . │ . ║ . ║")
+        line2 = S.frame("╟───┼───╫───╢")
+        line3 = S.frame("╠═══╪═══╬═══╣")
+        line4 = S.frame("╚═══╧═══╩═══╝")
         symbol = " 1234567890"
-        nums   = [ [""]+[symbol[n] for n in row] for row in Gf ]
+        nums = [ [""]+[symbol[n] for n in row] for row in Gf ]
 
         print(line0)
         for r in range(1, self.side+1):
